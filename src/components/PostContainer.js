@@ -1,97 +1,88 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-// import * as service from './API';
+// import axios from 'axios';
 import './PostContainer.css';
 
 class PostContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { chartData: {} };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     data: chartData,
+  //   };
+  // }
 
-  // fetchPostInfo = async () => {
-  //   const post = await service.data();
-  //   console.log(post);
-  // };
-  // getData() {
-  //   return axios
+  // async componentDidMount() {
+  //   let { data: chartData } = await axios.get(
+  //     'https://api.bithumb.com/public/ticker/all'
+  //   );
+  //   this.setState({ chartData });
+  // }
+
+  // componentDidMount() {
+  //   var th = this;
+  //   this.serverRequest = axios
   //     .get('https://api.bithumb.com/public/ticker/all')
-  //     .then(response => {
-  //       // returning the data here allows the caller to get it through another .then(...)
-  //       return response;
+  //     .then(function(event) {
+  //       th.setState({
+  //         data: event.data,
+  //       });
   //     });
   // }
 
-  async componentDidMount() {
-    let { data: chartData } = await axios.get(
-      'https://api.bithumb.com/public/ticker/all'
-    );
-    this.setState({ chartData });
-  }
+  // componentWillUnmount() {
+  //   this.serverRequest.abort();
+  // }
 
   render() {
-    const { chartData } = this.state;
-    // chartData.data.date = undefined;
-    // delete chartData.data.date;
-    console.log(chartData.data);
-    // forEach (val, index in chartData.data) {
-    //   console.log(`${index} : ${val.sell_price}`)
-    // // }
+    // const { chartData } = this.state;
+    // this.state.data.date = undefined;
+    // delete this.state.data.date;
+    // console.log(chartData.data);
 
     // for (const val, index in chartData.data) {
     //   console.log(`${index} : ${val.sell_price}`)
     // }
 
-    // const todoItems = chartData.map((val, index) => (
-    //   // Only do this if items have no stable IDs
-    //   <li key={index}>{val.sell_price}</li>
-    // ));
-
-    // array.forEach(element => {});
-
-    // chartData.data.forEach(val, index => {
-    //   console.log(`${index} : ${val.sell_price}`)
+    // Object.entries(chartData.data).forEach(([key, value]) => {
+    //   console.log(value);
     // });
-
-    // var i = 0;
-    // while (i < Object.keys(chartData.data).length) {
-    //   console.log(`${chartData[i]}`);
+    // for (const [key, value] of Object.entries(chartData.data)) {
+    //   console.log(`${value.sell_price}`);
     // }
 
-    // const renderData = this.getData();
-    // console.log(renderData);
-    // const list = chartData.map((val, index) => {
+    // let contents = this.state.data.data;
+    // let newData = contents;
+    // console.log(Object.keys(newData));
+    // var lists = [];
+
+    var data = this.props.data;
+    var chart;
+    // console.log(data);
+    if (data.status === '0000') {
+      console.log(Object.keys(data.data));
+      // data.
+
+      for (const [key, value] of Object.entries(data.data)) {
+        // console.log(`${value.sell_price}`);
+        chart += `<tr>
+            <td>${key}</td>
+            <td>${value.sell_price}</td>
+            <td>${value.volume_7day}</td>
+          </tr>`;
+      }
+      console.log(chart);
+    }
+
     return (
       <div className="Post">
         <table id="table" className="table table-striped table-bordered">
           <thead>
             <tr>
-              <th>코인 (Coin)</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
+              <th>Coin Name</th>
+              <th>Current Price</th>
+              <th>Volume</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>{this.state.chartData.data}</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011/04/25</td>
-              <td>$320,800</td>
-            </tr>
-            <tr>
-              <td>Garrett Winters</td>
-              <td>Accountant</td>
-              <td>Tokyo</td>
-              <td>63</td>
-              <td>2011/07/25</td>
-              <td>$170,750</td>
-            </tr>
-          </tbody>
+          <tbody>{(dangerouslySetInnerHTML = chart)}</tbody>
         </table>
       </div>
     );
