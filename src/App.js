@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import Header from './components/Header';
 import PostContainer from './components/PostContainer';
-import axios from 'axios';
 import './App.css';
 
 class App extends Component {
@@ -15,10 +14,27 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    let { data: chartData } = await axios.get(
-      'https://api.bithumb.com/public/ticker/all'
-    );
-    this.setState({ tableData: chartData });
+    this.getData();
+    this.interval = setInterval(() => {
+      this.getData();
+    }, 1000);
+  }
+
+  getData() {
+    fetch('https://api.bithumb.com/public/ticker/all')
+      .then(res => {
+        const data = res.json();
+        return data;
+      })
+      .then(res => {
+        this.setState({
+          tableData: res,
+        });
+      });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
