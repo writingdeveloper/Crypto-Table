@@ -5,15 +5,19 @@ class PostContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 'init',
-      tableData: {},
+      tableData: {
+        status: '0000',
+        data: {
+          loading: { sell_price: 'loading', volume_7day: 'loading' },
+        },
+      },
     };
   }
   async componentDidMount() {
     this.getData();
     this.interval = setInterval(() => {
       this.getData();
-    }, 1000);
+    }, 10000);
   }
 
   getData() {
@@ -26,6 +30,9 @@ class PostContainer extends Component {
         this.setState({
           tableData: res,
         });
+      })
+      .catch(error => {
+        console.error(error);
       });
   }
 
@@ -36,7 +43,7 @@ class PostContainer extends Component {
   render() {
     let data = this.state.tableData;
     let chart = [];
-    // console.log(data);
+    console.log(data);
     if (data.status === '0000') {
       delete data.data['date'];
       for (let [key, value] of Object.entries(data.data)) {
@@ -48,6 +55,22 @@ class PostContainer extends Component {
           </tr>
         );
       }
+    } else if (
+      data.status === '5500' ||
+      data.status === '5600' ||
+      data.status === '5900'
+    ) {
+      this.setState({
+        tableData: {
+          status: 'ERROR',
+          data: {
+            ERROR: {
+              sell_price: 'ERROR with API',
+              volume_7day: 'ERROR with API',
+            },
+          },
+        },
+      });
     }
     return (
       <div className="Post">
