@@ -1,92 +1,151 @@
 import React, { Component } from 'react';
+import DataTable from 'react-data-table-component';
+import axios from 'axios';
 import './PostContainer.css';
 
+const darkTheme = {
+  title: {
+    fontSize: '22px',
+    fontColor: '#FFFFFF',
+    backgroundColor: '#363640',
+  },
+  contextMenu: {
+    backgroundColor: '#E91E63',
+    fontColor: '#FFFFFF',
+  },
+  header: {
+    fontSize: '12px',
+    fontColor: '#FFFFFF',
+    backgroundColor: '#363640',
+  },
+  rows: {
+    fontColor: '#FFFFFF',
+    backgroundColor: '#363640',
+    borderColor: 'rgba(255, 255, 255, .12)',
+    hoverFontColor: 'black',
+    hoverBackgroundColor: 'rgba(0, 0, 0, .24)',
+  },
+  cells: {
+    cellPadding: '48px',
+  },
+  pagination: {
+    fontSize: '13px',
+    fontColor: '#FFFFFF',
+    backgroundColor: '#363640',
+    buttonFontColor: '#FFFFFF',
+    buttonHoverBackground: 'rgba(255, 255, 255, .12)',
+  },
+  expander: {
+    fontColor: '#FFFFFF',
+    backgroundColor: '#363640',
+  },
+};
+// const data = [{ id: 1, title: 'Conan the Barbarian', year: '1982' }];
+const columns = [
+  {
+    name: 'Coin Name',
+    selector: 'key',
+    sortable: true,
+  },
+  {
+    name: 'Current Price',
+    selector: 'Price',
+    sortable: true,
+    right: true,
+  },
+  {
+    name: 'Volume',
+    selector: 'Volume',
+    sortable: true,
+    right: true,
+  },
+
+];
+
+
+
 class PostContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tableData: {
-        status: '0000',
-        data: {
-          loading: { sell_price: 'loading', volume_7day: 'loading' },
-        },
-      },
-    };
-  }
+  state = {
+    data: [],
+    loading: false,
+    totalRows: 0,
+    perPage: 10,
+  };
+
   async componentDidMount() {
-    this.getData();
-    this.interval = setInterval(() => {
-      this.getData();
-    }, 10000);
-  }
+    const { perPage } = this.state;
+    this.setState({ loading: false }); //true
 
-  getData() {
-    fetch('https://api.bithumb.com/public/ticker/all')
-      .then(res => {
-        const data = res.json();
-        return data;
-      })
-      .then(res => {
-        this.setState({
-          tableData: res,
-        });
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
+    const response = await axios.get(`https://api.bithumb.com/public/ticker/all`);
+    console.log(response.data);
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    let data = this.state.tableData;
     let chart = [];
-    console.log(data);
-    if (data.status === '0000') {
-      delete data.data['date'];
-      for (let [key, value] of Object.entries(data.data)) {
-        chart.push(
-          <tr key={key}>
-            <td>{key}</td>
-            <td>{value.sell_price}</td>
-            <td>{value.volume_7day}</td>
-          </tr>
-        );
+    // console.log(data);
+    if (response.data.status === '0000') {
+      delete response.data.data['date'];
+      console.log(response.data.data)
+      for (let [key, value] of Object.entries(response.data.data)) {
+        chart.push({ 'key': key, 'Price': value.sell_price, 'Volume': value.volume_7day });
+
+
       }
-    } else if (
-      data.status === '5500' ||
-      data.status === '5600' ||
-      data.status === '5900'
-    ) {
+      console.log(chart);
+
+      this.interval = setInterval(() => {
+        this.getData();
+      }, 1000);
+
       this.setState({
-        tableData: {
-          status: 'ERROR',
-          data: {
-            ERROR: {
-              sell_price: 'ERROR with API',
-              volume_7day: 'ERROR with API',
-            },
-          },
-        },
+        data: chart,
+        totalRows: chart.length,
+        loading: false,
       });
     }
-    return (
-      <div className="Post">
-        <table id="table" className="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Coin Name</th>
-              <th>Current Price</th>
-              <th>Volume</th>
-            </tr>
-          </thead>
-          <tbody>{chart}</tbody>
-        </table>
-      </div>
-    );
   }
-}
+
+  async getData() {
+    const { perPage } = this.state;
+    this.setState({ loading: false }); //true
+
+    const response = await axios.get(`https://api.bithumb.com/public/ticker/all`);
+    // console.log(response.data);
+
+    let chart = [];
+    if (response.data.status === '0000') {
+      delete response.data.data['date'];
+      // console.log(response.data.data)
+      for (let [key, value] of Object.entries(response.data.data)) {
+        chart.push({ 'key': key, 'Price': `${value.sell_price}원`, 'Volume': value.volume_7day });
+      }
+      this.setState({
+        data: chart,
+        totalRows: chart.length,
+        loading: false,
+      });
+    }
+  }
+
+
+  render() {
+    const { loading, data, totalRows } = this.state;
+    console.log(data);
+
+    return (
+      <DataTable className="Post"
+        title="Crypto Table"
+        columns={columns}
+        data={data}
+        progressPending={loading}
+        fixedHeader
+        fixedHeaderScrollHeight="600px"
+        customTheme={darkTheme}
+      // pagination
+      // paginationServer
+      // paginationTotalRows={totalRows}
+      />
+    )
+  }
+};
+
 
 export default PostContainer;
