@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
-// import 'semantic-ui-css/semantic.min.css';
 import './PostContainer.css';
 import { darkTheme, columns } from './tableSetting';
 
@@ -58,8 +57,7 @@ class PostContainer extends Component {
 
   render() {
     const { data, totalRows } = this.state;
-    console.log(data);
-
+    // console.log(data);
     return (
       <DataTable
         noHeader
