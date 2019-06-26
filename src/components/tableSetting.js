@@ -1,3 +1,5 @@
+import React from 'react';
+
 /* Theme Setting */
 const darkTheme = {
   // title: {
@@ -39,6 +41,14 @@ const columns = [
     name: 'Coin Name',
     selector: 'key',
     sortable: true,
+    cell: row => (
+      <a
+        href={'https://www.bithumb.com/trade/order/' + row.key}
+        target="_blank"
+        rel="noopener noreferrer">
+        {row.key}
+      </a>
+    ),
   },
   {
     name: 'Current Price',
