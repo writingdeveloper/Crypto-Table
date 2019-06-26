@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
-import 'semantic-ui-css/semantic.min.css';
+// import 'semantic-ui-css/semantic.min.css';
 import './PostContainer.css';
 import { darkTheme, columns } from './tableSetting';
 
@@ -9,7 +9,7 @@ import { darkTheme, columns } from './tableSetting';
 class PostContainer extends Component {
   state = {
     data: [],
-    totalRows: 0,
+    totalRows: 86,
   };
 
   async componentDidMount() {
@@ -29,19 +29,23 @@ class PostContainer extends Component {
       delete response.data.data['date'];
       // console.log(response.data.data)
       for (let [key, value] of Object.entries(response.data.data)) {
-        if (value['24H_fluctate_rate'] === 1) {
+        if (Math.sign(value['24H_fluctate_rate']) === 1) {
           chart.push({
             key: key,
             Price: `${value.sell_price}원`,
-            FluctateRate: `+ ${value['24H_fluctate_rate']}`,
-            Volume: value.volume_7day,
+            FluctateRate: `+ ${value['24H_fluctate_rate']}% (${
+              value['24H_fluctate']
+            }원)`,
+            Volume: `${Number(value.volume_7day).toFixed(5)} ${key}`,
           });
         } else {
           chart.push({
             key: key,
             Price: `${value.sell_price}원`,
-            FluctateRate: value['24H_fluctate_rate'],
-            Volume: value.volume_7day,
+            FluctateRate: `${value['24H_fluctate_rate']}% (${
+              value['24H_fluctate']
+            }원)`,
+            Volume: `${Number(value.volume_7day).toFixed(5)} ${key}`,
           });
         }
       }
@@ -53,19 +57,20 @@ class PostContainer extends Component {
   }
 
   render() {
-    const { loading, data, totalRows } = this.state;
-    // console.log(data);
+    const { data, totalRows } = this.state;
+    console.log(data);
 
     return (
       <DataTable
+        noHeader
         className="Post"
-        title="Crypto Table"
         columns={columns}
         data={data}
-        progressPending={loading}
         customTheme={darkTheme}
-        pagination
+        pagination={true}
         paginationTotalRows={totalRows}
+        paginationPerPage={10}
+        responsive={true}
       />
     );
   }
