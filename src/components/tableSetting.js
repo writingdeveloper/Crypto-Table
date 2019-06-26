@@ -1,14 +1,14 @@
 /* Theme Setting */
 const darkTheme = {
-  title: {
-    fontSize: '22px',
-    fontColor: '#FFFFFF',
-    backgroundColor: '#363640',
-  },
-  contextMenu: {
-    backgroundColor: '#E91E63',
-    fontColor: '#FFFFFF',
-  },
+  // title: {
+  //   fontSize: '22px',
+  //   fontColor: '#FFFFFF',
+  //   backgroundColor: '#363640',
+  // },
+  // contextMenu: {
+  //   backgroundColor: '#E91E63',
+  //   fontColor: '#FFFFFF',
+  // },
   header: {
     fontSize: '12px',
     fontColor: '#FFFFFF',
@@ -25,15 +25,11 @@ const darkTheme = {
     cellPadding: '48px',
   },
   pagination: {
-    fontSize: '13px',
+    // fontSize: '13px',
     fontColor: '#FFFFFF',
     backgroundColor: '#363640',
     buttonFontColor: '#FFFFFF',
     buttonHoverBackground: 'rgba(255, 255, 255, .12)',
-  },
-  expander: {
-    fontColor: '#FFFFFF',
-    backgroundColor: '#363640',
   },
 };
 
