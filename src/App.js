@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import 'semantic-ui-css/semantic.min.css';
 import PostContainer from './components/PostContainer';
 import './App.css';
 
