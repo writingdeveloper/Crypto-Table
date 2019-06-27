@@ -41,6 +41,7 @@ const columns = [
     name: 'Coin Name',
     selector: 'key',
     sortable: true,
+    ignoreRowClick: true,
     cell: row => (
       <a
         href={'https://www.bithumb.com/trade/order/' + row.key}
