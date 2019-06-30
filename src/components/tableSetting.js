@@ -62,6 +62,22 @@ const columns = [
     selector: 'FluctateRate',
     sortable: true,
     right: true,
+    ignoreRowClick: true,
+    cell: row => {
+      if (row.FluctateRate < 0) {
+        return (
+          <div class="minus">
+            {row.FluctateRate}% ({row.FluctateRate24}원)
+          </div>
+        );
+      } else {
+        return (
+          <div class="plus">
+            +{row.FluctateRate}% (+{row.FluctateRate24}원)
+          </div>
+        );
+      }
+    },
   },
   {
     name: 'Volume',
