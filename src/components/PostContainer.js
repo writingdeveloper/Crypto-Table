@@ -32,18 +32,16 @@ class PostContainer extends Component {
           chart.push({
             key: key,
             Price: `${value.sell_price}원`,
-            FluctateRate: `+ ${value['24H_fluctate_rate']}% (${
-              value['24H_fluctate']
-            }원)`,
+            FluctateRate: `${value['24H_fluctate_rate']}`,
+            FluctateRate24: `${value['24H_fluctate']}`,
             Volume: `${Number(value.volume_7day).toFixed(5)} ${key}`,
           });
         } else {
           chart.push({
             key: key,
             Price: `${value.sell_price}원`,
-            FluctateRate: `${value['24H_fluctate_rate']}% (${
-              value['24H_fluctate']
-            }원)`,
+            FluctateRate: `${value['24H_fluctate_rate']}`,
+            FluctateRate24: `${value['24H_fluctate']}`,
             Volume: `${Number(value.volume_7day).toFixed(5)} ${key}`,
           });
         }
@@ -54,6 +52,28 @@ class PostContainer extends Component {
       });
     }
   }
+
+  // for (let [key, value] of Object.entries(response.data.data)) {
+  //   if (Math.sign(value['24H_fluctate_rate']) === 1) {
+  //     chart.push({
+  //       key: key,
+  //       Price: `${value.sell_price}원`,
+  //       FluctateRate: `+ ${value['24H_fluctate_rate']}% (${
+  //         value['24H_fluctate']
+  //       }원)`,
+  //       Volume: `${Number(value.volume_7day).toFixed(5)} ${key}`,
+  //     });
+  //   } else {
+  //     chart.push({
+  //       key: key,
+  //       Price: `${value.sell_price}원`,
+  //       FluctateRate: `${value['24H_fluctate_rate']}% (${
+  //         value['24H_fluctate']
+  //       }원)`,
+  //       Volume: `${Number(value.volume_7day).toFixed(5)} ${key}`,
+  //     });
+  //   }
+  // }
 
   render() {
     const { data, totalRows } = this.state;
