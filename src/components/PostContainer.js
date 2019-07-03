@@ -10,7 +10,6 @@ class PostContainer extends Component {
     title: <div>Load data from API Server...</div>,
     status: <div>Wait</div>,
     data: [],
-    totalRows: 86,
   };
 
   async componentDidMount() {
@@ -57,7 +56,6 @@ class PostContainer extends Component {
         statue: status,
         result: 'success',
         data: chart,
-        totalRows: chart.length,
         title: (
           <div>
             <div className="logoContainer">
@@ -99,7 +97,7 @@ class PostContainer extends Component {
   }
 
   render() {
-    const { data, totalRows, title } = this.state;
+    const { data, title } = this.state;
     // console.log(data);
     return (
       <DataTable
@@ -108,10 +106,8 @@ class PostContainer extends Component {
         columns={columns}
         data={data}
         customTheme={darkTheme}
-        pagination={true}
-        paginationTotalRows={totalRows}
-        paginationPerPage={10}
         responsive={true}
+        fixedHeader
       />
     );
   }
