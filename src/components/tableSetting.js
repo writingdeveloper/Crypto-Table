@@ -1,16 +1,16 @@
 import React from 'react';
-
+import { coinNameKR } from './coinName';
 /* Theme Setting */
 const darkTheme = {
-  // title: {
-  //   fontSize: '22px',
-  //   fontColor: '#FFFFFF',
-  //   backgroundColor: '#363640',
-  // },
-  // contextMenu: {
-  //   backgroundColor: '#E91E63',
-  //   fontColor: '#FFFFFF',
-  // },
+  title: {
+    fontSize: '22px',
+    fontColor: '#FFFFFF',
+    backgroundColor: '#363640',
+  },
+  contextMenu: {
+    backgroundColor: '#E91E63',
+    fontColor: '#FFFFFF',
+  },
   header: {
     fontSize: '12px',
     fontColor: '#FFFFFF',
@@ -24,10 +24,9 @@ const darkTheme = {
     hoverBackgroundColor: 'rgba(0, 0, 0, .24)',
   },
   cells: {
-    cellPadding: '48px',
+    cellPadding: '10px',
   },
   pagination: {
-    // fontSize: '13px',
     fontColor: '#FFFFFF',
     backgroundColor: '#363640',
     buttonFontColor: '#FFFFFF',
@@ -42,22 +41,31 @@ const columns = [
     selector: 'key',
     sortable: true,
     ignoreRowClick: true,
-    width: '16%',
-    // maxWidth: '5%',
-    cell: row => (
-      <a
-        href={'https://www.bithumb.com/trade/order/' + row.key}
-        target="_blank"
-        rel="noopener noreferrer">
-        {row.key}
-      </a>
-    ),
+    width: '25%',
+    cell: row => {
+      function getKeyByValue(object, row) {
+        // Data from coinName.js Object
+        return object[row]; // Returns Korean Coin Name
+      }
+      return (
+        <a
+          className="coinName"
+          href={'https://www.bithumb.com/trade/order/' + row.key}
+          target="_blank"
+          rel="noopener noreferrer">
+          {row.key}
+          <span className="sub">
+            {getKeyByValue(coinNameKR.bithumb, row.key)}
+          </span>
+        </a>
+      );
+    },
   },
   {
     name: 'Current Price',
     selector: 'Price',
     sortable: true,
-    right: true,
+    // right: true,
     width: '25%',
     // maxWidth: '20%',
   },
@@ -65,7 +73,7 @@ const columns = [
     name: '24Hours Fluctate',
     selector: 'FluctateRate',
     sortable: true,
-    right: true,
+    // right: true,
     ignoreRowClick: true,
     cell: row => {
       if (row.FluctateRate < 0) {
@@ -87,7 +95,7 @@ const columns = [
     name: 'Volume',
     selector: 'Volume',
     sortable: true,
-    right: true,
+    // right: true,
   },
 ];
 
