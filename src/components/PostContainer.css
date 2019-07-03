@@ -12,6 +12,72 @@ a {
   color: #ffff;
 }
 
+.tableHeader {
+  border: 1px solid double;
+}
+
+.logo {
+  width: 6%;
+}
+
+.logoContainer {
+  display: inline;
+}
+
+#statusSuccess {
+  display: inline-block;
+  margin-left: 8px;
+  width: 10px;
+  height: 10px;
+  border: 4px solid green;
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+#statusFail {
+  display: inline-block;
+  margin-left: 8px;
+  width: 10px;
+  height: 10px;
+  border: 4px solid red;
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.apiSuccess {
+  display: inline;
+  font-size: 15px;
+  color: greenyellow
+}
+
+.apiFail {
+  display: inline;
+  font-size: 15px;
+  color: red;
+}
+
+.rdt_TableHeader {
+  position: initial;
+  padding-left: 24px;
+  width: 1104px;
+}
+
 .plus {
   color: #2B8F28;
 }
@@ -20,13 +86,18 @@ a {
   color: steelblue;
 }
 
-.Post h1 {
-  font-size: 3rem;
+.coinName {
+  font-size: 11px;
+  font-weight: bold;
 }
 
-.Post p {
-  font-size: 2rem;
+.sub {
+  display: block;
+  font-size: xx-small;
+  font-weight: 100;
+  color: #a4a4a4;
 }
+
 
 .rdt_TableFooter {
   padding-left: 0px !important;
