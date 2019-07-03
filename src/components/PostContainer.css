@@ -74,7 +74,7 @@ a {
 
 .rdt_TableHeader {
   position: initial !important;
-  padding-left: 24px !important;
+  padding: 0px 0px 0px 0px !important;
   width: 1112px;
 }
 
@@ -83,7 +83,7 @@ a {
 }
 
 .cpRjbT {
-  max-height: 70vh;
+  max-height: 70vh !important;
 }
 
 .plus {
