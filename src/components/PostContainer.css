@@ -63,7 +63,7 @@ a {
 .apiSuccess {
   display: inline;
   font-size: 15px;
-  color: greenyellow
+  color: greenyellow;
 }
 
 .apiFail {
@@ -73,7 +73,7 @@ a {
 }
 
 .rdt_TableHeader {
-  position: initial;
+  position: initial !important;
   padding-left: 24px !important;
   width: 1128px;
 }
@@ -87,7 +87,7 @@ a {
 }
 
 .plus {
-  color: #2B8F28;
+  color: #2b8f28;
 }
 
 .minus {
@@ -105,7 +105,6 @@ a {
   font-weight: 100;
   color: #a4a4a4;
 }
-
 
 .rdt_TableFooter {
   padding-left: 0px !important;
@@ -128,28 +127,32 @@ a {
   ##Screen = B/w 1025px to 1280px
 */
 
-@media (min-width: 1025px) and (max-width: 1280px) {}
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
 
 /*
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
 */
 
-@media (min-width: 768px) and (max-width: 1024px) {}
+@media (min-width: 768px) and (max-width: 1024px) {
+}
 
 /*
   ##Device = Tablets, Ipads (landscape)
   ##Screen = B/w 768px to 1024px
 */
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
 
 /*
   ##Device = Low Resolution Tablets, Mobiles (Landscape)
   ##Screen = B/w 481px to 767px
 */
 
-@media (min-width: 481px) and (max-width: 767px) {}
+@media (min-width: 481px) and (max-width: 767px) {
+}
 
 /*
   ##Device = Most of the Smartphones Mobiles (Portrait)
