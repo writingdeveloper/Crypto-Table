@@ -74,12 +74,16 @@ a {
 
 .rdt_TableHeader {
   position: initial;
-  padding-left: 24px;
+  padding-left: 24px !important;
   width: 1128px;
 }
 
 .hjRsCJ {
   width: 100%;
+}
+
+.gcNWaY {
+  padding: 0px 0px 0px 0px;
 }
 
 .plus {
