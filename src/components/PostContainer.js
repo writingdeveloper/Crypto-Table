@@ -63,7 +63,7 @@ class PostContainer extends Component {
             <div className="logoContainer">
               <a href="https://www.bithumb.com/">
                 <img
-                  src="/images/bithumb.png"
+                  src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/bithumb.png?raw=true"
                   alt="bithumb LOGO"
                   className="logo"
                 />
@@ -84,7 +84,7 @@ class PostContainer extends Component {
             <div className="logoContainer">
               <a href="https://www.bithumb.com/">
                 <img
-                  src="/images/bithumb.png"
+                  src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/bithumb.png?raw=true"
                   alt="bithumb LOGO"
                   className="logo"
                 />
