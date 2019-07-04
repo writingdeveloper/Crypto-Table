@@ -41,7 +41,7 @@ const columns = [
     selector: 'key',
     sortable: true,
     ignoreRowClick: true,
-    width: '25%',
+    width: '20%',
     cell: row => {
       function getKeyByValue(object, row) {
         // Data from coinName.js Object
@@ -65,15 +65,13 @@ const columns = [
     name: 'Current Price',
     selector: 'Price',
     sortable: true,
-    // right: true,
-    width: '25%',
-    // maxWidth: '20%',
+    ignoreRowClick: true,
+    width: '20%',
   },
   {
     name: '24Hours Fluctate',
     selector: 'FluctateRate',
     sortable: true,
-    // right: true,
     ignoreRowClick: true,
     cell: row => {
       if (row.FluctateRate < 0) {
@@ -92,10 +90,24 @@ const columns = [
     },
   },
   {
-    name: 'Volume',
-    selector: 'Volume',
+    name: 'Ko.Premium',
+    selector: 'premium',
     sortable: true,
-    // right: true,
+    cell: row => {
+      if (row.premium < 0) {
+        return (
+          <div className="minus">
+            {row.premium}% ({row.premiumGap}원)
+          </div>
+        );
+      } else {
+        return (
+          <div className="plus">
+            +{row.premium}% (+{row.premiumGap}원)
+          </div>
+        );
+      }
+    },
   },
 ];
 
