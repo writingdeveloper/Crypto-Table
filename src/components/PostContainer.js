@@ -13,16 +13,24 @@ class PostContainer extends Component {
   };
 
   async componentDidMount() {
+    /* Exchange Rate USD to KRW */
+    const exchangeResponse = await axios.get(
+      `https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD`
+    );
+    const exchangeData = exchangeResponse.data[0].basePrice;
+
     this.interval = setInterval(() => {
-      this.getData();
-    }, 1000);
+      this.getCoinData(exchangeData);
+    }, 3000);
   }
 
-  async getData() {
+  async getCoinData(exchangeData) {
     const response = await axios.get(
       `https://api.bithumb.com/public/ticker/all`
     );
-    // console.log(response.data);
+    const usdCoinData = await axios.get(
+      `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,DASH,LTC,ETC,XRP,BCH,XMR,ZEC,QTUM,BTG,EOS,ICX,VET,TRX,ELF,MITH,MCO,OMG,KNC,GNT,ZIL,ETHOS,PAY,WAX,POWR,LRC,GTO,STEEM,STRAT,ZRX,REP,AE,XEM,SNT,ADA,PPT,CTXC,CMT,THETA,WTC,ITC,TRUE,ABT,RNT,PLY,WAVES,LINK,ENJ,PST,SALT,RDN,LOOM,PIVX,INS,BCD,BZNT,XLM,OCN,BSV,TMTG,BAT,WET,XVG,IOST,POLY,HC,ROM,AMO,ETZ,ARN,APIS,MTL,DACC,DAC,BHP,BTT,HDAC,NPXS,AUTO,GXC,ORBS,VALOR,CON,ANKR,MIX&tsyms=USD`
+    );
 
     let chart = [];
     let status;
@@ -30,16 +38,33 @@ class PostContainer extends Component {
     if (response.data.status === '0000') {
       delete response.data.data['date'];
 
-      // console.log(response.data.data)
-      // console.log(Object.keys(response.data.data));
       for (let [key, value] of Object.entries(response.data.data)) {
+        let premiumPrice;
+        let premiumPriceGap;
+        if (typeof usdCoinData.data.DISPLAY[key] === 'undefined') {
+          premiumPrice = '-';
+          premiumPriceGap = '-';
+        } else {
+          let usdPrice =
+            usdCoinData.data.DISPLAY[key].USD.PRICE.replace('$ ', '').replace(
+              ',',
+              ''
+            ) * exchangeData;
+          premiumPrice = (
+            ((value.sell_price - usdPrice) / usdPrice) *
+            100
+          ).toFixed(2);
+          premiumPriceGap = (value.sell_price - usdPrice).toFixed(2);
+        }
+
         if (Math.sign(value['24H_fluctate_rate']) === 1) {
           chart.push({
             key: key,
             Price: `${value.sell_price}원`,
             FluctateRate: `${value['24H_fluctate_rate']}`,
             FluctateRate24: `${value['24H_fluctate']}`,
-            Volume: `${Number(value.volume_7day).toFixed(5)} ${key}`,
+            premium: premiumPrice,
+            premiumGap: premiumPriceGap,
           });
         } else {
           chart.push({
@@ -47,7 +72,8 @@ class PostContainer extends Component {
             Price: `${value.sell_price}원`,
             FluctateRate: `${value['24H_fluctate_rate']}`,
             FluctateRate24: `${value['24H_fluctate']}`,
-            Volume: `${Number(value.volume_7day).toFixed(5)} ${key}`,
+            premium: premiumPrice,
+            premiumGap: premiumPriceGap,
           });
         }
       }
@@ -107,6 +133,7 @@ class PostContainer extends Component {
         data={data}
         customTheme={darkTheme}
         responsive={true}
+        noDataComponent="Loading..."
         fixedHeader
       />
     );
