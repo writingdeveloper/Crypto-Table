@@ -91,6 +91,8 @@ const coinNameKR = {
     CON: '코넌',
     ANKR: '앵커',
     MIX: '믹스마블',
+    HYC: '하이콘',
+    LBA: '크레드',
   },
 };
 
