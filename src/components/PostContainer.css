@@ -86,6 +86,10 @@ a {
   max-height: 70vh !important;
 }
 
+.fWmJgw {
+  display: initial;
+}
+
 .plus {
   color: #2b8f28;
 }
@@ -162,5 +166,8 @@ a {
 @media (min-width: 320px) and (max-width: 480px) {
   .Post {
     width: 100% !important;
+  }
+  .rdt_TableHeader {
+    width: 100%;
   }
 }
