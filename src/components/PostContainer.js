@@ -4,6 +4,12 @@ import axios from 'axios';
 import './PostContainer.css';
 import { darkTheme, columns } from './tableSetting';
 
+/* Price Comma Function */
+function addComma(num) {
+  let regexp = /\B(?=(\d{3})+(?!\d))/g;
+  return num.toString().replace(regexp, ',');
+}
+
 /* Component */
 class PostContainer extends Component {
   state = {
@@ -13,6 +19,7 @@ class PostContainer extends Component {
   };
 
   async componentDidMount() {
+    console.log('componentWillUnmount');
     /* Exchange Rate USD to KRW */
     const exchangeResponse = await axios.get(
       `https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD`
@@ -21,8 +28,10 @@ class PostContainer extends Component {
 
     this.interval = setInterval(() => {
       this.getCoinData(exchangeData);
-    }, 3000);
+    }, 5000);
   }
+
+  async componentWillUnmount() {}
 
   async getCoinData(exchangeData) {
     const response = await axios.get(
@@ -60,20 +69,20 @@ class PostContainer extends Component {
         if (Math.sign(value['24H_fluctate_rate']) === 1) {
           chart.push({
             key: key,
-            Price: `${value.sell_price}원`,
+            Price: `${addComma(value.sell_price)}원`,
             FluctateRate: `${value['24H_fluctate_rate']}`,
-            FluctateRate24: `${value['24H_fluctate']}`,
-            premium: premiumPrice,
-            premiumGap: premiumPriceGap,
+            FluctateRate24: `${addComma(value['24H_fluctate'])}`,
+            premium: addComma(premiumPrice),
+            premiumGap: addComma(premiumPriceGap),
           });
         } else {
           chart.push({
             key: key,
-            Price: `${value.sell_price}원`,
+            Price: `${addComma(value.sell_price)}원`,
             FluctateRate: `${value['24H_fluctate_rate']}`,
-            FluctateRate24: `${value['24H_fluctate']}`,
-            premium: premiumPrice,
-            premiumGap: premiumPriceGap,
+            FluctateRate24: `${addComma(value['24H_fluctate'])}`,
+            premium: addComma(premiumPrice),
+            premiumGap: addComma(premiumPriceGap),
           });
         }
       }
@@ -85,7 +94,10 @@ class PostContainer extends Component {
         title: (
           <div>
             <div className="logoContainer">
-              <a href="https://www.bithumb.com/">
+              <a
+                href="https://www.bithumb.com/"
+                target="_blank"
+                rel="noopener noreferrer">
                 <img
                   src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/bithumb.png?raw=true"
                   alt="bithumb LOGO"
@@ -106,7 +118,10 @@ class PostContainer extends Component {
         title: (
           <div>
             <div className="logoContainer">
-              <a href="https://www.bithumb.com/">
+              <a
+                href="https://www.bithumb.com/"
+                target="_blank"
+                rel="noopener noreferrer">
                 <img
                   src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/bithumb.png?raw=true"
                   alt="bithumb LOGO"
