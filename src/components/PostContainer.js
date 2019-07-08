@@ -3,6 +3,7 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import './PostContainer.css';
 import { darkTheme, columns } from './tableSetting';
+import styled, { css } from 'styled-components';
 
 /* Price Comma Function */
 function addComma(num) {
@@ -28,10 +29,10 @@ class PostContainer extends Component {
 
     this.interval = setInterval(() => {
       this.getCoinData(exchangeData);
-    }, 5000);
+    }, 1000);
   }
 
-  async componentWillUnmount() {}
+  // async componentWillUnmount() {}
 
   async getCoinData(exchangeData) {
     const response = await axios.get(
