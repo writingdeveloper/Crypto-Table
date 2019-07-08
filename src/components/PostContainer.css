@@ -1,8 +1,11 @@
 .Post {
-  background-color: #fafafa;
+  background-color: transparent;
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
 
   /* height: 100%; */
+  overflow-x: hidden;
+  width: 70%;
+  height: 100%;
   margin: 0 auto;
   /* overflow: hidden; */
 }
@@ -72,24 +75,6 @@ a {
   color: red;
 }
 
-.rdt_TableHeader {
-  position: initial !important;
-  padding: 0px 0px 0px 0px !important;
-  width: 1152px;
-}
-
-.hjRsCJ {
-  width: 100%;
-}
-
-.cpRjbT {
-  max-height: 70vh !important;
-}
-
-.fWmJgw {
-  display: initial;
-}
-
 .plus {
   color: #2b8f28;
 }
@@ -110,9 +95,24 @@ a {
   color: #a4a4a4;
 }
 
+.rdt_Table {
+  max-width: 100%;
+}
+
+.rdt_TableBody {
+  max-height: 83vh;
+}
+
+.rdt_TableHeader {
+  max-height: 4vh;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
 .rdt_TableFooter {
   padding-left: 0px !important;
   padding-right: 0px !important;
+  padding: 0px 0px 0px 0px !important;
 }
 
 /*
@@ -121,9 +121,9 @@ a {
 */
 
 @media (min-width: 1281px) {
-  .Post {
+  /* .Post {
     width: 60% !important;
-  }
+  } */
 }
 
 /*
@@ -131,32 +131,28 @@ a {
   ##Screen = B/w 1025px to 1280px
 */
 
-@media (min-width: 1025px) and (max-width: 1280px) {
-}
+@media (min-width: 1025px) and (max-width: 1280px) {}
 
 /*
   ##Device = Tablets, Ipads (portrait)
   ##Screen = B/w 768px to 1024px
 */
 
-@media (min-width: 768px) and (max-width: 1024px) {
-}
+@media (min-width: 768px) and (max-width: 1024px) {}
 
 /*
   ##Device = Tablets, Ipads (landscape)
   ##Screen = B/w 768px to 1024px
 */
 
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
 
 /*
   ##Device = Low Resolution Tablets, Mobiles (Landscape)
   ##Screen = B/w 481px to 767px
 */
 
-@media (min-width: 481px) and (max-width: 767px) {
-}
+@media (min-width: 481px) and (max-width: 767px) {}
 
 /*
   ##Device = Most of the Smartphones Mobiles (Portrait)
@@ -165,9 +161,17 @@ a {
 
 @media (min-width: 320px) and (max-width: 480px) {
   .Post {
-    width: 100% !important;
-  }
-  .rdt_TableHeader {
     width: 100%;
   }
+
+  .rdt_Table .rdt_TableHeader {
+    width: 100%
+  }
+
+  /*
+  .rdt_TableHeader {
+    width: 100%;
+  } */
+
+
 }
