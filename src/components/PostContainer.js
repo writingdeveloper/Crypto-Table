@@ -3,7 +3,6 @@ import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import './PostContainer.css';
 import { darkTheme, columns } from './tableSetting';
-import styled, { css } from 'styled-components';
 
 /* Price Comma Function */
 function addComma(num) {
@@ -19,20 +18,21 @@ class PostContainer extends Component {
     data: [],
   };
 
+  /* Error Catch */
+  componentDidCatch(error, info) {
+    console.error(error, info);
+  }
+
   async componentDidMount() {
-    console.log('componentWillUnmount');
     /* Exchange Rate USD to KRW */
     const exchangeResponse = await axios.get(
       `https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD`
     );
     const exchangeData = exchangeResponse.data[0].basePrice;
-
     this.interval = setInterval(() => {
       this.getCoinData(exchangeData);
-    }, 1000);
+    }, 5000); // Interval 5 Seconds
   }
-
-  // async componentWillUnmount() {}
 
   async getCoinData(exchangeData) {
     const response = await axios.get(
