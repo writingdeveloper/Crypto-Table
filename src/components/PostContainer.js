@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
-import './PostContainer.css';
 import { darkTheme, columns } from './tableSetting';
+import './PostContainer.css';
 
 /* Price Comma Function */
 function addComma(num) {

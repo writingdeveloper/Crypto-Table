@@ -1,13 +1,10 @@
 .Post {
   background-color: transparent;
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-
-  /* height: 100%; */
-  overflow-x: hidden;
   width: 70%;
   height: 100%;
   margin: 0 auto;
-  /* overflow: hidden; */
+  overflow-x: hidden !important;
 }
 
 a {
