@@ -29,12 +29,15 @@ class PostContainer extends Component {
       `https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD`
     );
     const exchangeData = exchangeResponse.data[0].basePrice;
+    // getCoinData(exchangeData);
     this.interval = setInterval(() => {
       this.getCoinData(exchangeData);
     }, 5000); // Interval 5 Seconds
   }
 
   async getCoinData(exchangeData) {
+    let chartData = []; //
+    let status;
     const response = await axios.get(
       `https://api.bithumb.com/public/ticker/all`
     );
@@ -42,8 +45,6 @@ class PostContainer extends Component {
       `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,DASH,LTC,ETC,XRP,BCH,XMR,ZEC,QTUM,BTG,EOS,ICX,VET,TRX,ELF,MITH,MCO,OMG,KNC,GNT,ZIL,ETHOS,PAY,WAX,POWR,LRC,GTO,STEEM,STRAT,ZRX,REP,AE,XEM,SNT,ADA,PPT,CTXC,CMT,THETA,WTC,ITC,TRUE,ABT,RNT,PLY,WAVES,LINK,ENJ,PST,SALT,RDN,LOOM,PIVX,INS,BCD,BZNT,XLM,OCN,BSV,TMTG,BAT,WET,XVG,IOST,POLY,HC,ROM,AMO,ETZ,ARN,APIS,MTL,DACC,DAC,BHP,BTT,HDAC,NPXS,AUTO,GXC,ORBS,VALOR,CON,ANKR,MIX&tsyms=USD`
     );
 
-    let chart = [];
-    let status;
     /* If API Status Success */
     if (response.data.status === '0000') {
       delete response.data.data['date'];
@@ -68,7 +69,7 @@ class PostContainer extends Component {
         }
 
         if (Math.sign(value['24H_fluctate_rate']) === 1) {
-          chart.push({
+          chartData.push({
             key: key,
             Price: `${addComma(value.sell_price)}원`,
             FluctateRate: `${value['24H_fluctate_rate']}`,
@@ -77,7 +78,7 @@ class PostContainer extends Component {
             premiumGap: addComma(premiumPriceGap),
           });
         } else {
-          chart.push({
+          chartData.push({
             key: key,
             Price: `${addComma(value.sell_price)}원`,
             FluctateRate: `${value['24H_fluctate_rate']}`,
@@ -91,7 +92,7 @@ class PostContainer extends Component {
       this.setState({
         statue: status,
         result: 'success',
-        data: chart,
+        data: chartData,
         title: (
           <div>
             <div className="logoContainer">
