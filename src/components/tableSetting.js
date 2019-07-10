@@ -96,7 +96,7 @@ const columns = [
             {row.premium}% ({row.premiumGap}원)
           </div>
         );
-      } else if (row.premium >= 0) {
+      } else {
         return (
           <div className="plus">
             +{row.premium}% (+{row.premiumGap}원)
