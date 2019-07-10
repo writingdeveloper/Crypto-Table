@@ -92,6 +92,10 @@ a {
   color: #a4a4a4;
 }
 
+.rdt_TableRow {
+  min-height: 45px;
+}
+
 .rdt_Table {
   max-width: 100%;
 }
