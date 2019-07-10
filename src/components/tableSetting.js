@@ -76,7 +76,7 @@ const columns = [
             {row.FluctateRate}% ({row.FluctateRate24}원)
           </div>
         );
-      } else {
+      } else if (row.FluctateRate >= 0) {
         return (
           <div className="plus">
             +{row.FluctateRate}% (+{row.FluctateRate24}원)
@@ -96,7 +96,7 @@ const columns = [
             {row.premium}% ({row.premiumGap}원)
           </div>
         );
-      } else {
+      } else if (row.premium >= 0) {
         return (
           <div className="plus">
             +{row.premium}% (+{row.premiumGap}원)
