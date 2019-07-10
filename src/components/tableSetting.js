@@ -1,5 +1,7 @@
 import React from 'react';
 import { coinNameKR } from './coinName';
+import './PostContainer.css';
+
 /* Theme Setting */
 const darkTheme = {
   title: {
