@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import PostContainer from './components/PostContainer';
 import './App.css';
+import './components/PostContainer.css';
 
 class App extends Component {
   render() {
