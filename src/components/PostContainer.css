@@ -161,18 +161,11 @@ a {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-  .Post {
+  .App>.Post {
     width: 100%;
   }
 
   .rdt_Table .rdt_TableHeader {
     width: 100%
   }
-
-  /*
-  .rdt_TableHeader {
-    width: 100%;
-  } */
-
-
 }
