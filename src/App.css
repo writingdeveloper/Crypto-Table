@@ -1,3 +1,12 @@
 body {
   background: #E0E0E0;
 }
+
+.Post {
+  background-color: transparent;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+  overflow-x: hidden !important;
+}
