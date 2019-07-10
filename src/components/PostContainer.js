@@ -10,7 +10,23 @@ function addComma(num) {
   return num.toString().replace(regexp, ',');
 }
 
-/* Component */
+/* Title Component */
+let titleComponent = (
+  <div className="logoContainer">
+    <a
+      href="https://www.bithumb.com/"
+      target="_blank"
+      rel="noopener noreferrer">
+      <img
+        src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/bithumb.png?raw=true"
+        alt="bithumb LOGO"
+        className="logo"
+      />
+    </a>
+  </div>
+);
+
+/* Main Component */
 class PostContainer extends Component {
   state = {
     title: <div className="Load">Load data from API Server...</div>,
@@ -29,6 +45,7 @@ class PostContainer extends Component {
       `https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD`
     );
     const exchangeData = exchangeResponse.data[0].basePrice;
+    this.getCoinData(exchangeData);
     // getCoinData(exchangeData);
     this.interval = setInterval(() => {
       this.getCoinData(exchangeData);
@@ -37,6 +54,7 @@ class PostContainer extends Component {
 
   async getCoinData(exchangeData) {
     let chartData = []; //
+
     let status;
     const response = await axios.get(
       `https://api.bithumb.com/public/ticker/all`
@@ -87,18 +105,7 @@ class PostContainer extends Component {
         data: chartData,
         title: (
           <div>
-            <div className="logoContainer">
-              <a
-                href="https://www.bithumb.com/"
-                target="_blank"
-                rel="noopener noreferrer">
-                <img
-                  src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/bithumb.png?raw=true"
-                  alt="bithumb LOGO"
-                  className="logo"
-                />
-              </a>
-            </div>
+            {titleComponent}
             <div id="statusSuccess">{status}</div>
             <p className="apiSuccess"> API Works Fine</p>
           </div>
@@ -111,18 +118,7 @@ class PostContainer extends Component {
         result: 'fail',
         title: (
           <div>
-            <div className="logoContainer">
-              <a
-                href="https://www.bithumb.com/"
-                target="_blank"
-                rel="noopener noreferrer">
-                <img
-                  src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/bithumb.png?raw=true"
-                  alt="bithumb LOGO"
-                  className="logo"
-                />
-              </a>
-            </div>
+            {titleComponent}
             <div id="statusFail">{status}</div>
             <p className="apiFail"> API is not wokring. Something is Wrong</p>
           </div>
