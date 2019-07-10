@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import { darkTheme, columns } from './tableSetting';
+import CoinChartComponent from './CoinChart';
 
 /* Price Comma Function */
 function addComma(num) {
@@ -13,7 +14,7 @@ function addComma(num) {
 class PostContainer extends Component {
   state = {
     title: <div className="Load">Load data from API Server...</div>,
-    status: <div className="wait">Wait</div>,
+    status: <div className="initLoading">LOADING WAIT!!</div>,
     data: [],
   };
 
@@ -46,15 +47,18 @@ class PostContainer extends Component {
 
     /* If API Status Success */
     if (response.data.status === '0000') {
-      delete response.data.data['date'];
+      delete response.data.data['date']; // Remove 'date' data from object
 
+      /* Create table data */
       for (let [key, value] of Object.entries(response.data.data)) {
         let premiumPrice;
         let premiumPriceGap;
         if (typeof usdCoinData.data.DISPLAY[key] === 'undefined') {
+          // If Coin data not exists set '-'
           premiumPrice = '-';
           premiumPriceGap = '-';
         } else {
+          /* Calculate USD * KRW data */
           let usdPrice =
             usdCoinData.data.DISPLAY[key].USD.PRICE.replace('$ ', '').replace(
               ',',
@@ -66,28 +70,17 @@ class PostContainer extends Component {
           ).toFixed(2);
           premiumPriceGap = (value.sell_price - usdPrice).toFixed(2);
         }
-
-        if (Math.sign(value['24H_fluctate_rate']) === 1) {
-          chartData.push({
-            key: key,
-            Price: `${addComma(value.sell_price)}원`,
-            FluctateRate: `${value['24H_fluctate_rate']}`,
-            FluctateRate24: `${addComma(value['24H_fluctate'])}`,
-            premium: addComma(premiumPrice),
-            premiumGap: addComma(premiumPriceGap),
-          });
-        } else {
-          chartData.push({
-            key: key,
-            Price: `${addComma(value.sell_price)}원`,
-            FluctateRate: `${value['24H_fluctate_rate']}`,
-            FluctateRate24: `${addComma(value['24H_fluctate'])}`,
-            premium: addComma(premiumPrice),
-            premiumGap: addComma(premiumPriceGap),
-          });
-        }
+        /* Create Final Data */
+        chartData.push({
+          key: key,
+          Price: `${addComma(value.sell_price)}원`,
+          FluctateRate: `${value['24H_fluctate_rate']}`,
+          FluctateRate24: `${addComma(value['24H_fluctate'])}`,
+          premium: addComma(premiumPrice),
+          premiumGap: addComma(premiumPriceGap),
+        });
       }
-
+      /* If Server Status Success */
       this.setState({
         statue: status,
         result: 'success',
@@ -140,7 +133,6 @@ class PostContainer extends Component {
 
   render() {
     const { data, title } = this.state;
-    const LoadWait = <div className="Hello">LOADING WAIT!!</div>;
     // console.log(data);
     return (
       <DataTable
@@ -150,8 +142,10 @@ class PostContainer extends Component {
         data={data}
         customTheme={darkTheme}
         responsive={true}
-        noDataComponent={LoadWait}
+        noDataComponent={this.state.status}
         fixedHeader
+        expandableRows
+        expandableRowsComponent={<CoinChartComponent />}
       />
     );
   }
