@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import { darkTheme, columns } from './tableSetting';
-import CoinChartComponent from './CoinChart';
+import CoinAdditionalComponent from './CoinAdditional';
 
 /* Price Comma Function */
 function addComma(num) {
@@ -145,7 +145,7 @@ class PostContainer extends Component {
         noDataComponent={this.state.status}
         fixedHeader
         expandableRows
-        expandableRowsComponent={<CoinChartComponent />}
+        expandableRowsComponent={<CoinAdditionalComponent />}
       />
     );
   }
