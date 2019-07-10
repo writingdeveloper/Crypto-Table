@@ -96,11 +96,11 @@ a {
   min-height: 45px;
 }
 
-.rdt_Table {
+.sc-eNQAEJ>.rdt_Table {
   max-width: 100%;
 }
 
-.rdt_TableBody {
+.rdt_Table>.rdt_TableBody {
   max-height: 83vh;
 }
 

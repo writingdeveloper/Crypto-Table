@@ -28,12 +28,6 @@ const darkTheme = {
   cells: {
     cellPadding: '10px',
   },
-  pagination: {
-    fontColor: '#FFFFFF',
-    backgroundColor: '#363640',
-    buttonFontColor: '#FFFFFF',
-    buttonHoverBackground: 'rgba(255, 255, 255, .12)',
-  },
 };
 
 /* Columns Setting */
