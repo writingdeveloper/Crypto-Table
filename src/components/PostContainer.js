@@ -12,8 +12,8 @@ function addComma(num) {
 /* Component */
 class PostContainer extends Component {
   state = {
-    title: <div>Load data from API Server...</div>,
-    status: <div>Wait</div>,
+    title: <div className="Load">Load data from API Server...</div>,
+    status: <div className="wait">Wait</div>,
     data: [],
   };
 
@@ -140,6 +140,7 @@ class PostContainer extends Component {
 
   render() {
     const { data, title } = this.state;
+    const LoadWait = <div className="Hello">LOADING WAIT!!</div>;
     // console.log(data);
     return (
       <DataTable
@@ -149,7 +150,7 @@ class PostContainer extends Component {
         data={data}
         customTheme={darkTheme}
         responsive={true}
-        noDataComponent="Loading..."
+        noDataComponent={LoadWait}
         fixedHeader
       />
     );
