@@ -1,7 +1,7 @@
 {
-  "name": "crypto-table",
+  "name": "crypto-price-table",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://sangumee.github.io/Crypto-Table",
   "dependencies": {
     "axios": "^0.19.0",
@@ -11,7 +11,8 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "styled-components": "^4.3.2"
+    "styled-components": "^4.3.2",
+    "user": "0.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
