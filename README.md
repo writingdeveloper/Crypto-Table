@@ -1,68 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Crypto-Price-Table
 
-## Available Scripts
+[![Build Status](https://travis-ci.org/sangumee/Crypto-Table.svg?branch=master)](https://travis-ci.org/sangumee/Crypto-Table)
 
-In the project directory, you can run:
+## Introduction
 
-### `npm start`
+ReactJS cryptocurrency table web app to check Bithumb's coin price with KRW-USD premium simply.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/Intro.png?raw=true">
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Run & Install
 
-### `npm test`
+You can access this [URL](https://sangumee.github.io/Crypto-Table/) directly or install it on your local system using the process above.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 👨‍💻FINISHED👨‍💻
 
-### `npm run build`
+✅ Bring coin prices in real time and reflect them in the table using the Bithumb API
+✅ Use exchange rate information to provide a percentage of data compared to the U.S. market and the Korean market.
+✅ Development of a function to notify users of problems in case of failure of data lookup
+✅ Develop a responsive web that supports both desktop and mobile browsers
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The tested version is shown below and is developed based on the LTS version of Node.js.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+After Installing process you can run this web app with this command.
 
-### `npm run eject`
+```
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Built With
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [React.js](https://reactjs.org/)
+- [React data table component](https://github.com/jbetancur/react-data-table-component)
+- [Bithumb API](https://apidocs.bithumb.com/)
+- [Cryptocompare API](https://www.cryptocompare.com/)
+- [Hana Bank KRW-USD API](https://openapi.kebhana.com/#/)
