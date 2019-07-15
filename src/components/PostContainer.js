@@ -38,14 +38,14 @@ class PostContainer extends Component {
     console.error(error, info);
   }
 
+  /* ComponentDidMount Cycle */
   async componentDidMount() {
     /* Exchange Rate USD to KRW */
     const exchangeResponse = await axios.get(
       `https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD`
     );
     const exchangeData = exchangeResponse.data[0].basePrice;
-    this.getCoinData(exchangeData);
-    // getCoinData(exchangeData);
+    this.getCoinData(exchangeData); // Initial get coin Data
     this.interval = setInterval(() => {
       this.getCoinData(exchangeData);
     }, 5000); // Interval 5 Seconds
@@ -68,12 +68,10 @@ class PostContainer extends Component {
 
       /* Create table data */
       for (let [key, value] of Object.entries(response.data.data)) {
-        let premiumPrice;
-        let premiumPriceGap;
+        let premiumPrice, premiumPriceGap;
         if (typeof usdCoinData.data.DISPLAY[key] === 'undefined') {
           // If Coin data not exists set '-'
-          premiumPrice = '-';
-          premiumPriceGap = '-';
+          premiumPrice = premiumPriceGap = '-';
         } else {
           /* Calculate USD * KRW data */
           let usdPrice =
@@ -139,8 +137,6 @@ class PostContainer extends Component {
         responsive={true}
         noDataComponent={this.state.status}
         fixedHeader
-        // expandableRows
-        // expandableRowsComponent={<CoinAdditionalComponent />}
       />
     );
   }
