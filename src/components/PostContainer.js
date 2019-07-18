@@ -51,6 +51,10 @@ class PostContainer extends Component {
     }, 5000); // Interval 5 Seconds
   }
 
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
+
   async getCoinData(exchangeData) {
     let chartData = []; //
 
