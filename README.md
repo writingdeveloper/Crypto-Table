@@ -14,9 +14,9 @@ You can access this [URL](https://sangumee.github.io/Crypto-Table/) directly or 
 
 ## 👨‍💻FINISHED👨‍💻
 
-✅ Bring coin prices in real time and reflect them in the table using the Bithumb API
-✅ Use exchange rate information to provide a percentage of data compared to the U.S. market and the Korean market.
-✅ Development of a function to notify users of problems in case of failure of data lookup
+✅ Bring coin prices in real time and reflect them in the table using the Bithumb API  
+✅ Use exchange rate information to provide a percentage of data compared to the U.S. market and the Korean market.  
+✅ Development of a function to notify users of problems in case of failure of data lookup  
 ✅ Develop a responsive web that supports both desktop and mobile browsers
 
 ## Installation
