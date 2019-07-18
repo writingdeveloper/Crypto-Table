@@ -23,6 +23,12 @@ You can access this [URL](https://sangumee.github.io/Crypto-Table/) directly or 
 
 The tested version is shown below and is developed based on the LTS version of Node.js.
 
+```
+npm install
+```
+
+with Install.
+
 After Installing process you can run this web app with this command.
 
 ```
