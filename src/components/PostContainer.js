@@ -27,6 +27,8 @@ let titleComponent = (
 
 /* Main Component */
 class PostContainer extends Component {
+  _isMounted = false;
+
   state = {
     title: <div className="Load">Load data from API Server...</div>,
     status: <div className="initLoading">LOADING WAIT!!</div>,
@@ -40,6 +42,7 @@ class PostContainer extends Component {
 
   /* ComponentDidMount Cycle */
   async componentDidMount() {
+    this._isMounted = true;
     /* Exchange Rate USD to KRW */
     const exchangeResponse = await axios.get(
       `https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD`
@@ -52,6 +55,7 @@ class PostContainer extends Component {
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     console.log('componentWillUnmount');
   }
 
