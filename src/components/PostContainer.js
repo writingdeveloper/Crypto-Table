@@ -51,16 +51,14 @@ class PostContainer extends Component {
     }, 5000); // Interval 5 Seconds
   }
 
+  /* componentWillUnmount Cycle */
   componentWillUnmount() {
-    clearInterval(this.interval);
+    clearInterval(this.interval); // Prevent memory leaks
     this.cancelSetState = true;
-    console.log('componentWillUnmount');
   }
 
   async getCoinData(exchangeData) {
-    let chartData = []; //
-
-    let status;
+    let chartData = []; //  Initial chart array
     const response = await axios.get(
       `https://api.bithumb.com/public/ticker/all`
     );
@@ -107,13 +105,12 @@ class PostContainer extends Component {
       }
       /* If Server Status Success */
       this.setState({
-        statue: status,
-        result: 'success',
+        statue: 'success',
         data: chartData,
         title: (
           <div>
             {titleComponent}
-            <div id="statusSuccess">{status}</div>
+            <div id="statusSuccess" />
             <p className="apiSuccess"> API Works Fine</p>
           </div>
         ),
@@ -121,12 +118,11 @@ class PostContainer extends Component {
     } else {
       /* If Server Status Fails */
       this.setState({
-        statue: status,
-        result: 'fail',
+        statue: 'fail',
         title: (
           <div>
             {titleComponent}
-            <div id="statusFail">{status}</div>
+            <div id="statusFail" />
             <p className="apiFail"> API is not wokring. Something is Wrong</p>
           </div>
         ),
