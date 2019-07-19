@@ -27,7 +27,6 @@ let titleComponent = (
 
 /* Main Component */
 class PostContainer extends Component {
-  _isMounted = false;
   state = {
     title: <div className="Load">Load data from API Server...</div>,
     status: <div className="initLoading">LOADING WAIT!!</div>,
@@ -41,8 +40,6 @@ class PostContainer extends Component {
 
   /* ComponentDidMount Cycle */
   async componentDidMount() {
-    this._isMounted = true;
-
     /* Exchange Rate USD to KRW */
     const exchangeResponse = await axios.get(
       `https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD`
@@ -50,13 +47,13 @@ class PostContainer extends Component {
     const exchangeData = exchangeResponse.data[0].basePrice;
     this.getCoinData(exchangeData); // Initial get coin Data
     this.interval = setInterval(() => {
-      if (this._isMounted) this.getCoinData(exchangeData);
-      else clearInterval(this.interval);
-    }, 5000);
+      this.getCoinData(exchangeData);
+    }, 5000); // Interval 5 Seconds
   }
 
   componentWillUnmount() {
-    this._isMounted = false;
+    clearInterval(this.interval);
+    this.cancelSetState = true;
     console.log('componentWillUnmount');
   }
 
@@ -70,6 +67,10 @@ class PostContainer extends Component {
     const usdCoinData = await axios.get(
       `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,DASH,LTC,ETC,XRP,BCH,XMR,ZEC,QTUM,BTG,EOS,ICX,VET,TRX,ELF,MITH,MCO,OMG,KNC,GNT,ZIL,ETHOS,PAY,WAX,POWR,LRC,GTO,STEEM,STRAT,ZRX,REP,AE,XEM,SNT,ADA,PPT,CTXC,CMT,THETA,WTC,ITC,TRUE,ABT,RNT,PLY,WAVES,LINK,ENJ,PST,SALT,RDN,LOOM,PIVX,INS,BCD,BZNT,XLM,OCN,BSV,TMTG,BAT,WET,XVG,IOST,POLY,HC,ROM,AMO,ETZ,ARN,APIS,MTL,DACC,DAC,BHP,BTT,HDAC,NPXS,AUTO,GXC,ORBS,VALOR,CON,ANKR,MIX&tsyms=USD`
     );
+
+    if (this.cancelSetState) {
+      return;
+    }
 
     /* If API Status Success */
     if (response.data.status === '0000') {
