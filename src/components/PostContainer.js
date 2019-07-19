@@ -52,7 +52,7 @@ class PostContainer extends Component {
   }
 
   componentWillUnmount() {
-    this.interval.abort();
+    clearInterval(this.interval);
     console.log('componentWillUnmount');
   }
 
