@@ -86,6 +86,7 @@ const columns = [
     },
   },
   {
+    /* KRW-USD premium */
     name: 'Ko.Premium',
     selector: 'premium',
     sortable: true,
