@@ -3,7 +3,6 @@
   "version": "1.0.1",
   "private": false,
   "homepage": "https://sangumee.github.io/Crypto-Table",
-  "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
     "gh-pages": "^2.0.1",
