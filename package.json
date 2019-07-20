@@ -1,6 +1,6 @@
 {
   "name": "crypto-price-table",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
   "homepage": "https://sangumee.github.io/Crypto-Table",
   "dependencies": {
