@@ -88,17 +88,17 @@ class PostContainer extends Component {
               ''
             ) * exchangeData;
           premiumPrice = (
-            ((value.sell_price - usdPrice) / usdPrice) *
+            ((value.closing_price - usdPrice) / usdPrice) *
             100
           ).toFixed(2);
-          premiumPriceGap = (value.sell_price - usdPrice).toFixed(2);
+          premiumPriceGap = (value.closing_price - usdPrice).toFixed(2);
         }
         /* Create Final Data */
         chartData.push({
           key: key,
-          Price: `${addComma(value.sell_price)}원`,
-          FluctateRate: `${value['24H_fluctate_rate']}`,
-          FluctateRate24: `${addComma(value['24H_fluctate'])}`,
+          Price: `${addComma(value.closing_price)}원`,
+          FluctateRate: `${value['fluctate_rate_24H']}`,
+          FluctateRate24: `${value['fluctate_24H']}`,
           premium: addComma(premiumPrice),
           premiumGap: addComma(premiumPriceGap),
         });
