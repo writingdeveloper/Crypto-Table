@@ -93,6 +93,10 @@ const coinNameKR = {
     MIX: '믹스마블',
     HYC: '하이콘',
     LBA: '크레드',
+    QKC: '쿼크체인',
+    LAMB: '람다',
+    CRO: '크립토닷컴체인',
+    MXC: '머신익스체인지코인',
   },
 };
 
