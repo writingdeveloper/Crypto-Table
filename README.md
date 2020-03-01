@@ -1,6 +1,6 @@
 # Crypto-Price-Table
 
-[![Build Status](https://travis-ci.com/writingdeveloper/Crypto-Table.svg?branch=master)](https://travis-ci.org/sangumee/Crypto-Table) ![](https://img.shields.io/badge/Code%20Statue-Close-red.svg)
+[![Build Status](https://travis-ci.com/writingdeveloper/Crypto-Table.svg?branch=master)](https://travis-ci.org/writingdeveloper/Crypto-Table) ![](https://img.shields.io/badge/Code%20Statue-Close-red.svg)
 
 ## Introduction
 
