@@ -6,7 +6,7 @@
 
 ReactJS cryptocurrency table web app to check Bithumb's coin price with KRW-USD premium simply.
 
-<img src="https://github.com/sangumee/Crypto-Table/blob/master/public/images/Intro.png?raw=true">
+<img src="https://github.com/writingdeveloper/Crypto-Table/blob/master/public/images/Intro.png?raw=true">
 
 ## Run & Install
 
