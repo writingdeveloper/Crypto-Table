@@ -8,7 +8,7 @@
     "axios": "^0.19.2",
     "gh-pages": "^2.1.1",
     "react": "^16.13.1",
-    "react-data-table-component": "^6.9.3",
+    "react-data-table-component": "^6.11.2",
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.3.1",
